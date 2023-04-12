@@ -8,6 +8,21 @@ export default function TextForm(props) {
         setText(newText);
     }
 
+    //copy text function
+    const handleCopy=()=>{
+        console.log("I am copy");
+        var text = document.getElementById("myBox");
+        text.select();
+        text.setSelectionRange(0,999);
+        navigator.clipboard.writeText(text.value);
+    }
+
+    //Remove extra spaces
+    const handleExtraSpaces = () =>{
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "))
+    }
+
     const handleLoClick =()=>{
         let newText = text.toLocaleLowerCase();
         setText(newText);
@@ -29,6 +44,8 @@ export default function TextForm(props) {
         </div>
         <button className='btn btn-primary m-2' onClick={handleUpClick} >Convert to UpperCase</button>
         <button className='btn btn-primary m-2 ' onClick={handleLoClick} >Convert to LowerCase</button>
+        <button className='btn btn-primary m-2 ' onClick={handleCopy} >Copy selected text</button>
+        <button className='btn btn-primary m-2 ' onClick={handleExtraSpaces} >Remove Extra Spaces</button>
 
         <div className="container">
             <h1>Your text summary</h1>
